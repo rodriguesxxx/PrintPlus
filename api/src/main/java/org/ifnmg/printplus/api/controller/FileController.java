@@ -1,6 +1,5 @@
 package org.ifnmg.printplus.api.controller;
 
-import org.ifnmg.printplus.api.model.File;
 import org.ifnmg.printplus.api.model.Response;
 import org.ifnmg.printplus.api.service.FileService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +21,7 @@ public class FileController {
     @PostMapping("/upload")
     public ResponseEntity<Response> upload(@RequestParam("file") MultipartFile file, @RequestParam("session_id") String sessionId) {
 
-        fileService.setFile(new File(file));
+        fileService.setFile(file);
 
         try {
             fileService.save(sessionId);

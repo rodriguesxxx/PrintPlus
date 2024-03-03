@@ -10,8 +10,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-//TODO: refatorar código: remover model File.
-//TODO: converter arquivo para pdf antes de salvar
 @Service
 public class FileService {
     
