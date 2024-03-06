@@ -10,7 +10,7 @@ import jakarta.persistence.Table;
 public class Session {
     
     @Id
-    @Column(name = "session_id")
+    @Column(name = "session_id", length = 4)
     private String sessionId;
 
     public Session() {
