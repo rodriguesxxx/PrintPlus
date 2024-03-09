@@ -6,6 +6,7 @@ import org.ifnmg.printplus.api.entity.FileEntity;
 import org.ifnmg.printplus.api.model.Response;
 import org.ifnmg.printplus.api.service.FileService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -15,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 @RestController
-@RequestMapping("/api/files")
+@RequestMapping("${base.endpoint}"+"/files")
 public class FileController {
 
     @Autowired
@@ -40,7 +41,6 @@ public class FileController {
                 .body(new Response<>("Erro inesperado ao baixar arquivo!", HttpStatus.INTERNAL_SERVER_ERROR.value()));
         }
     }
-
 
     @PostMapping("/upload")
     public ResponseEntity<Response> upload(@RequestParam("file") MultipartFile file, @RequestParam("session_id") String sessionId) {
