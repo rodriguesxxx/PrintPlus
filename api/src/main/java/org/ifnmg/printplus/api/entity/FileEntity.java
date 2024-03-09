@@ -18,6 +18,8 @@ public class FileEntity {
 
     @Column
     private String filename;
+    
+    public FileEntity() {}
 
     public FileEntity(String filename) {
         setFilename(filename);
