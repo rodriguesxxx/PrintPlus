@@ -1,5 +1,7 @@
 package services;
 
+import configs.RequestConfig;
+
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
@@ -7,14 +9,13 @@ import java.net.http.HttpResponse;
 
 
 //TODO: get para baixar arquivos
-public class Request {
+public class RequestService {
     
-    public static String baseUrl = "http://localhost:8080/printplus/api";
     static private HttpClient client = HttpClient.newHttpClient();
     
     public static HttpResponse<String> get(String endpoint) throws Exception {
         HttpRequest request = HttpRequest.newBuilder()
-            .uri(new URI(baseUrl + endpoint))
+            .uri(new URI(RequestConfig.baseUrl + endpoint))
             .GET()
             .build();
             
@@ -22,4 +23,10 @@ public class Request {
         
         return httpResponse;
     }
+
+//    public static HttpResponse<byte[] getFile() {
+//
+//
+//    }
 }
+

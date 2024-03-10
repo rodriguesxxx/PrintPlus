@@ -27,6 +27,20 @@ public class SessionController {
     @Autowired
     WordGenerator wGenerator;
 
+    @GetMapping("/{session_id}/files")
+    public ResponseEntity<Response> showFiles(@PathVariable("session_id") String sessionId) {
+        try {
+            Session session = sessionService.isValidSessionId(sessionId);
+            return ResponseEntity
+                    .status(HttpStatus.OK)
+                    .body(new Response<>("Sucesso ao retornar sessão", HttpStatus.OK.value(), session.files));
+        } catch (Exception e) {
+            return ResponseEntity
+                    .status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(new Response<>("Erro interno ao retornar arquivos da sessão", HttpStatus.INTERNAL_SERVER_ERROR.value()));
+        }
+    }
+
     @GetMapping("/{session_id}")
     public ResponseEntity<Response> show(@PathVariable("session_id") String sessionId) {
         try {
