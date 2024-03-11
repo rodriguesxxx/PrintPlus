@@ -24,9 +24,15 @@ public class RequestService {
         return httpResponse;
     }
 
-//    public static HttpResponse<byte[] getFile() {
-//
-//
-//    }
+   public static byte[] getFile(String endpoint) throws Exception {
+        HttpRequest request = HttpRequest.newBuilder()
+            .uri(new URI(RequestConfig.baseUrl + endpoint))
+            .GET()
+            .build();
+        
+        HttpResponse<byte[]> httpResponse = client.send(request, HttpResponse.BodyHandlers.ofByteArray());
+
+        return httpResponse.body();
+   }
 }
 
