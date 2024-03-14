@@ -1,7 +1,7 @@
 package services;
 
-import configs.FileConfig;
-import configs.SessionConfig;
+import enums.FileEnum;
+import enums.SessionEnum;
 import models.File;
 import models.Response;
 import utils.FileUtil;
@@ -13,7 +13,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class SessionService {
 
     public List<File> getSessionFiles(String session) throws Exception { 
-        HttpResponse<String> responseJson = RequestService.get(SessionConfig.baseEndpoint + "/" + session + "/files");
+        HttpResponse<String> responseJson = RequestService.get(SessionEnum.BASE_ENDPOINT.value() + "/" + session + "/files");
         ObjectMapper objectMapper = new ObjectMapper();
         Response response = objectMapper.readValue(responseJson.body(), Response.class);
         
@@ -26,7 +26,7 @@ public class SessionService {
 
     public void saveSessionFiles(String session) throws Exception {
         List<File> files = getSessionFiles(session);
-        java.io.File newPath = new java.io.File(FileConfig.baseDir + session);
+        java.io.File newPath = new java.io.File(FileEnum.BASE_DIR.value() + session);
 
         if(!newPath.exists()) {
             newPath.mkdirs();

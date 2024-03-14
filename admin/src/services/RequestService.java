@@ -1,21 +1,19 @@
 package services;
 
-import configs.RequestConfig;
+import enums.RequestEnum;
 
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
-
-//TODO: get para baixar arquivos
 public class RequestService {
     
     static private HttpClient client = HttpClient.newHttpClient();
     
     public static HttpResponse<String> get(String endpoint) throws Exception {
         HttpRequest request = HttpRequest.newBuilder()
-            .uri(new URI(RequestConfig.baseUrl + endpoint))
+            .uri(new URI(RequestEnum.BASE_URL.value() + endpoint))
             .GET()
             .build();
             
@@ -26,7 +24,7 @@ public class RequestService {
 
    public static byte[] getFile(String endpoint) throws Exception {
         HttpRequest request = HttpRequest.newBuilder()
-            .uri(new URI(RequestConfig.baseUrl + endpoint))
+            .uri(new URI(RequestEnum.BASE_URL.value() + endpoint))
             .GET()
             .build();
         
