@@ -33,5 +33,13 @@ public class SessionService {
         return session.get();
     }
 
+    public void deleteSession(String sessionId) throws InvalidSessionException {
+        Optional<Session> session = sessionRepository.findById(sessionId);
+        if(session.isEmpty()) {
+            throw new InvalidSessionException();
+        }
+        sessionRepository.delete(null);
+    }
+
 
 }

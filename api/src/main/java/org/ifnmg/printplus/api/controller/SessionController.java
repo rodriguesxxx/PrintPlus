@@ -54,6 +54,7 @@ public class SessionController {
                 .body(new Response<>("Erro interno ao buscar sessão", HttpStatus.INTERNAL_SERVER_ERROR.value()));
         }
     }
+
     @PostMapping()
     public ResponseEntity<Response> create() {
         try {
@@ -67,4 +68,19 @@ public class SessionController {
                 .body(new Response<>("Erro interno ao criar sessão", HttpStatus.INTERNAL_SERVER_ERROR.value()));
         }
     }
+
+    @GetMapping("/{session_id}")
+    public ResponseEntity<Response> delete(@PathVariable("session_id") String sessionId) {
+        try {
+            Session session = sessionService.isValidSessionId(sessionId);
+            return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(new Response<>("Sucesso ao retornar sessão", HttpStatus.OK.value(), session));
+        } catch (Exception e) {
+            return ResponseEntity
+                .status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body(new Response<>("Erro interno ao buscar sessão", HttpStatus.INTERNAL_SERVER_ERROR.value()));
+        }
+    }
+
 }
